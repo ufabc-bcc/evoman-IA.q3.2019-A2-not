@@ -1,6 +1,6 @@
 # EvoMan
 
-Organized by Fabricio Olivetti de Franca (folivetti@ufabc.edu.br), Karine Miras (karine.smiras@gmail.com), Denis Fantinato, Patricia Vargas.
+Organized by Fabricio Olivetti de Franca (folivetti@ufabc.edu.br), Karine Miras (karine.smiras@gmail.com), Denis Fantinato, Patricia Vargas, A.E. Eiben.
 
 ## Introduction
 
