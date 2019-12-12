@@ -1,67 +1,69 @@
 # EvoMan
 
-## Introdução
+Organized by Fabricio Olivetti de Franca (folivetti@ufabc.edu.br), Karine Miras (karine.smiras@gmail.com), Denis Fantinato, Patricia Vargas.
 
-O objetivo desse projeto é entender na prática os conceitos de Inteligência Artificial aprendidos em sala de aula, principalmente com foco na construção de agentes inteligentes. Para tanto, nesse projeto será utilizada uma plataforma de aprendizado de agentes para video games feita em Python chamada [EvoMan](https://youtu.be/ZqaMjd1E4ZI). O projeto deve ser feito em grupos de até 03 (três) pessoas. A entrega do projeto deve ser feita via Github Classroom, um  repositório por grupo, contendo todo o código-fonte necessário para o aprendizado e a execução do agente (já deve ser fornecido o agente final) e um relatório de 03 (três) páginas descrevendo o algoritmo utilizado e os resultados obtidos.
+## Introduction
 
-## Prazo de entrega
+EvoMan [1] is a framework for testing competitive game-playing agents in a number of distinct challenges such as:
 
-O prazo final para a entrega será no dia 04 de dezembro, quarta-feira, até às 23:00. Esse prazo **não é negociável**, trabalhos entregues com atraso receberão desconto de $0.5$ ponto por hora.
+- Learning how to win a match against a single enemy
+- Generalizing the agent to win the matches against the entire set of enemies
+- Coevolving both the agent and the enemies to create intelligent enemies with increasing difficulties.
 
-## Instalação e Configuração
+This framework is inspired on the boss levels of the game MegaMan II [2] in which a robot with a simple arm cannon must beat more sophisticated robots (8 in total) with different powers.
 
-O código inicial, manual de uso e todos os recursos extras necessários estão disponíveis no Github:
+## Challenge
 
-- siga as instruções de instalação no arquivo *evoman1.0-doc.pdf*
-- execute o script de demonstração *controller_specialist_demo.py*  para testar a instalação
-- jogue o jogo utilizando o teclado para entender a dificuldade do problema. Utilize o script *human_demo.py*.
+In this challenge, the contestants should train their agent on a set of four enemies (defined by the contestant) and evaluate how general is their learned strategy when fighting against the whole set of enemies.
 
-## Tarefa
+Since each enemy behavior greatly differs from each other, the player should learn how to identify and react to general patterns like avoiding being shot or shoot at the direction of the enemy. For different learning algorithms this has already proven to be a challenge [1,3].
 
-Implemente um algoritmo de construção de agente inteligente entre os algoritmos vistos em aula, aqueles que estão no livro oficial do curso ou provenientes de algum artigo científico.
+The agent will have a total of $20$ sensors, with $16$ of them corresponding for horizontal and vertical distance to $8$ different bullets (maximum allowed), $2$ to the horizontal and vertical distance to the enemy, and $2$ describing the direction the player and the enemy is facing.
 
-O agente deve ser treinado utilizando o modo *Individual Evolution* da plataforma EvoMan com o objetivo de obter um agente que vença o maior número de adversários. Para isso deverão ser escolhidos $4$ adversários que poderão ser utilizados durante o treino e $4$ adversários que serão utilizados apenas para testar o Agente final.
+The framework is freely available at https://github.com/karinemiras/evoman_framework and it’s compatible with Python 3.6 and 3.7 (Python 3.8 is not compatible at the moment). There is also an extensive documentation at https://github.com/karinemiras/evoman_framework/blob/master/evoman1.0-doc.pdf.
 
-## Entrega
+##  Evaluation
 
-A entrega deverá ser feita via Github Classroom contendo todo o código necessário para treinar o agente, o arquivo contendo o agente final e o código para executá-lo. Além disso deve ser entregue um relatório em PDF seguindo o formato IEEE de conferências [nesse link](https://www.ieee.org/conferences/publishing/templates.html) contendo a descrição PEAS do agente, descrição do algoritmo utilizado e um resumo e análise dos resultados contendo quais adversários foram escolhidos para treino, quais para testes, quais adversários o agente consegue vencer, a energia final do agente, a energia final do adversário (caso o agente perca) e o tempo de duração da luta.
+Both the agent and the enemies start the game with 100 energy points. Everytime one player gets hit, it loses one point. Whoever reaches 0 points loses the match.
 
-## Observações
+The final performance of the agent after the end of a match is calculated by the energy gain, as a maximization problem, calculated by the difference between the player and the enemy energy:
 
-Não serão permitidos:
+$$Gain = ep - ee$$
 
-- o uso do código de computação evolutiva e neuroevolução contida no repositório.
-- qualquer alteração ao *core* da plataforma EvoMan (pasta *evoman*).
-- caso o algoritmo utilizado dependa de valores aleatórios, os experimentos devem ser repetidos 10 vezes e a média dos resultados deverá ser reportada.
-- O parâmetro `level` deverá ser setado como $2$ e o parâmetro `contacthurt` setado como `player` (ambos valores padrões).
-- Os outros parâmetros estão liberados para serem alterados, contanto que sejam reportados no relatório final.
+where ee, ep are the final amount of energy of the enemy and the player, respectively, so we want to maximize the gain.
 
-## Relatório
+The main goal of this competition is that a given agent perform equally good for every boss. So, each contestant agent will be tested against all of the enemies, and they will be ranked by the harmonic mean of the performance over the different bosses. 
 
-A estrutura do relatório deve conter:
+## Deadline
 
-- Uma breve introdução do problema (máximo 2 parágrafos)
-- Descrição básica do agente (PEAS)
-- Descrição do algoritmo utilizado (1 página)
-- Experimentos e resultados obtidos (1 página)
-- Análise dos resultados e conclusão
+All submissions should be sent until March 31st, 23:59 (GMT).
 
-Não se esqueçam de citar os trabalhos da literatura que foram utilizados no projeto. Não citem os slides de aula, mas os artigos originais dos algoritmos.
+## Installing the framework
 
-## Notas
+The initial code, manual and every other resources needed are available at this Github repository:
 
-O projeto completo e correto contará como $5$ ptos a serem distribuídos nas notas de prova de forma a maximizar a média harmônica. Além disso, os três primeiros colocados recebrão bônus de $1$ pto para o 1o. colocado, $0.6$ pto para o segundo colocado e $0.3$ pto para o terceiro colocado.
+- follow the installation instructions in the file *evoman1.0-doc.pdf*
+- run the demo script demonstração *controller_specialist_demo.py* to test if the framework is working
+- play the game using your own keyboard to understand the difficulties of the problem. Use the script *human_demo.py*.
 
-## Competição inter-universidades
+The agent should be trained using the *Individual Evolution* mode with the goal of beating each one of the four adversaries chosen for training.
 
-O melhor agente da turma competirá com o melhor agente da turma de Computação Evolutiva da Vrije Universiteit Amsterdam. Se nosso melhor agente ganhar, toda a turma ganha $0.6$ pto extra!
+## Submission
 
-## Dicas gerais
+The contestants should submit their code via GitHub Classroom, following the instructions at the [](), additionally, it should also be submitted a paper following the same template as used on WCCI describing your solution to the problem.
 
-- O arquivo de demonstração  mais limpo é o *dummy_demo.py*, esse pode ser um bom ponto de partida para implementar seus algoritmos.
-- Utilize fontes grandes quando plotar os gráficos de resultados, dessa forma eles continuam legíveis mesmo com a restrição de espaço do formato escolhido.
-- Teste seu algoritmo com poucas iterações e/ou apenas um adversário para ter certeza que ele está funcionando corretamente. Lembrem-se que o custo computacional de aprendizado para esse problema é bastante alto.
-- Controle o tempo de seus experimentos para planejar a execução do experimento final.
-- Implemente funções para salvar e recuperar resultados intermediários. Não substime a lei de Murphy!
-- Implemente um código que leia o agente final e mostre a luta contra todos os adversários.
+The paper should report the chosen bosses for training, the values of the average *player energy* (ep) and *enemy energy* (ee) obtained by your best agent for each one of the eight bosses and the average duration of the match  (this will be used in case of a drawn).
 
+## Notes
+
+It is not allowed to:
+
+- change the *core* of the framework (*evoman* folder).
+- The parameter `level` should be set to $2$ and `contacthurt` to `player` (both are the default values).
+
+
+## References
+
+[1] de Araújo, Karine da Silva Miras, and Fabrício Olivetti de França. "An electronic-game framework for evaluating coevolutionary algorithms." arXiv preprint arXiv:1604.00644 (2016).
+[2]  M. MEGA, “Produced by capcom, distributed by capcom, 1987,” System: NES.
+[3] de Araujo, Karine da Silva Miras, and Fabrício Olivetti de Franca. "Evolving a generalized strategy for an action-platformer video game framework." 2016 IEEE Congress on Evolutionary Computation (CEC). IEEE, 2016.
