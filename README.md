@@ -50,7 +50,7 @@ The agent should be trained using the *Individual Evolution* mode with the goal 
 
 ## Submission
 
-The contestants should submit their code via GitHub Classroom, following the instructions at the [](), additionally, it should also be submitted a paper following the same template as used on WCCI describing your solution to the problem.
+The contestants should submit their code via GitHub Classroom, following the instructions at the [https://classroom.github.com/g/YEQprX27](https://classroom.github.com/g/YEQprX27), additionally, it should also be submitted a paper following the same template as used on WCCI describing your solution to the problem.
 
 The paper should report the chosen bosses for training, the values of the average *player energy* (ep) and *enemy energy* (ee) obtained by your best agent for each one of the eight bosses and the average duration of the match  (this will be used in case of a drawn).
 
